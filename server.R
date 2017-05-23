@@ -7,12 +7,8 @@
 #    http://shiny.rstudio.com/
 #
 
-if(!require(shiny)){
-  install.packages("shiny")
-  require(shiny)
-}
-
-require(coGSEA)
+library(shiny)
+library(coGSEA)
 
 
 data("il13.data")
