@@ -1,0 +1,85 @@
+---
+title: "Dynamic report"
+output: html_document
+
+---
+
+```{r, echo=FALSE, results='hide'}
+require(coGSEA)
+require(parallel)
+```
+
+
+```{r, echo=FALSE, results='hide', eval=FALSE}
+result = coGSEA(ElistObject = elist, contrastMatrix = contrast, geneSetCollection = params$geneset, specie = params$specie, ENTREZGenesIds = elist$genes[[ids]], GSEA.Methods = params$GSEA.Methods, pvalAdjMethod = params$pvalAdjMethod, pvalCombMethod = params$pvalCombMethod, directoryPath = "./", alpha = params$alpha, num.workers = 4, shinyMode = TRUE)
+```
+
+
+```{r, results='asis', echo=FALSE}
+
+for (i in colnames(contrast())){
+  cat("  \n")
+  cat("# Result for condition", i, ":   \n")
+  
+  plot(resOutput()[["clustering"]][[i]],hang = -0.1)  
+    cat("  \n")  
+    cat("Fig 1 : Clustering of the GSEA methods on the genesets ranks (bases on raw p.values)  \n")  
+  
+  res.pca = PCA(resOutput()$PCA[[i]], scale.unit = T, axes = c(1,2), graph = FALSE)
+  eigen = res.pca$eig$`percentage of variance`
+  names(eigen) = rownames(res.pca$eig)
+  
+  plot(res.pca)  
+    cat("  \n")  
+    cat("Fig 2 : PCA of the GSEA methods on the genesets ranks (bases on raw p.values)  \n")  
+  
+  barplot(eigen, las = 2, ylab = "%")  
+    cat("  \n")  
+    cat("Fig 3 : Fall of the eigen values for the PCA above  \n")  
+  
+  corrplot(resOutput()$correlation[[i]], method = "circle", type = "full", order = "hclust",mar=c(10, 4, 4, 2) + 0.1)  
+    cat("  \n")  
+    cat("Fig 4 : Correlation Plot of the GSEA methods on the genesets ranks (bases on raw p.values)  \n")  
+  
+  upset(fromList(resOutput()$snailPlot[[i]]),order.by = "freq")   
+    cat("  \n")
+    cat("Fig 5 : UpsetR Ensemblist plot showing the intersection of the different gene sets found significantly differentialy expressed (p.value < alpha) by each GSEA method  \n")
+  
+  snail = supertest(resOutput()$snailPlot[[i]], n = length(levels(resOutput()$snailPlot[[i]][[1]])))  
+  plot.msets(snail, sort.by="size", keep.empty.intersections=FALSE, min.intersection.size = input$min.intersection.size)    
+    cat("  \n")  
+    cat("Fig 6 : Mset Ensemblist plot showing the intersection of the different gene sets found significantly differentialy expressed (p.value < alpha) by each GSEA method  \n")  
+  
+  pheatmap::pheatmap(resOutput()$heatmap[[i]], fontsize = 8)  
+    cat("  \n")  
+    cat("Fig 7 : Binary heatmap showing wether a geneset is found differentially (red) expressed (p.value < alpha) by a GSEA method or not (blue)  \n")  
+  
+  generateSummaryPlots(resOutput()$resumPlot2[[i]], savePlot = FALSE, legend = TRUE, file.name = "tmp", format = "pdf")  
+    cat("  \n")  
+    cat("Fig 8 : Summary plot per condition combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC  \n")  
+  
+  
+  
+  
+  
+
+}
+```
+
+# Comparison accross conditions  
+```{r, echo=FALSE}
+generateSummaryPlots(resOutput()$comparison, savePlot = FALSE, legend = TRUE, file.name = "tmp", format = "pdf")
+```
+
+Fig 9 : Comparison Summary plot combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC  
+
+  
+# Gene set Abbreviation mapping  
+```{r kable, echo=FALSE}
+kable(resOutput()$abbreviation)
+```
+
+
+```
+
+
