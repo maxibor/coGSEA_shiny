@@ -87,7 +87,7 @@ shinyServer(function(input, output, session) {
   })
 
   output$corPlot <- renderPlot({
-    corrplot(resOutput()$correlation[[input$conditionToDisplay]], method = "circle", type = "full", order = "hclust",mar=c(10, 4, 4, 2) + 0.1)
+    corrplot(resOutput()$correlation[[input$conditionToDisplay]], method = "circle", type = "full", order = "hclust",mar=c(2, 4, 4, 2) + 0.1)
   })
 
   output$upsetr <- renderPlot({
