@@ -1,7 +1,6 @@
-# coGSEA Shiny
+<img src="./logo.png" width="300"> <img src="./shinylogo.png" width="300">
 
-**co**mparative **G**ene **S**et **E**nrichment **Analysis**
-
+------  
 ## Requirements
 
 - [shiny](https://cran.r-project.org/web/packages/shiny/index.html)      
