@@ -28,4 +28,4 @@ More information about the method can be found in the [method introduction](./in
 ![](./images/screenshot.png)
 
 #### Disclaimer :
-This tool is largely inspired by the [eGSEA](http://bioconductor.org/packages/release/bioc/html/EGSEA.html) R package (and contains some of its code)
+coGSEA is largely inspired by the [eGSEA](http://bioconductor.org/packages/release/bioc/html/EGSEA.html) R package (and contains some of its code)
