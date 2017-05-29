@@ -10,7 +10,7 @@
 
 ## How to run the shiny app
 
-```
+``` r
 library(shiny)
 shiny::runGitHub('coGSEA_shiny','maxibor')
 ```
