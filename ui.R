@@ -73,35 +73,35 @@ shinyUI(fluidPage(
         tabPanel("Condition Plots",
                  # uiOutput("conditionToDisplay"),
                  plotOutput("clustering"),
-                 p("Fig 1 : Clustering of the GSEA methods on the gene-sets ranks (bases on raw p.values)"),
+                 p("Fig 1 : Clustering of the GSEA methods on the gene-sets ranks (bases on raw p.values)."),
                  plotOutput("PCA"),
-                 p("Fig 2 : PCA of the GSEA methods on the gene-sets ranks (bases on raw p.values)"),
+                 p("Fig 2 : PCA of the GSEA methods on the gene-sets ranks (bases on raw p.values)."),
                  plotOutput("eigen"),
-                 p("Fig 3 : Fall of the eigen values for the PCA above"),
+                 p("Fig 3 : Fall of the eigen values for the PCA above."),
                  plotOutput("corPlot"),
-                 p("Fig 4 : Correlation Plot of the GSEA methods on the gene-sets ranks (bases on raw p.values)"),
+                 p("Fig 4 : Correlation Plot of the GSEA methods on the gene-sets ranks (bases on raw p.values)."),
                  plotOutput("upsetr"),
-                 p("Fig 5 : UpsetR Ensemblist plot showing the intersection of the different gene-sets found  significantly enriched (p.value < alpha) by each GSEA method. Methods retrieving 0 significantly enriched gene-sets are not included"),
+                 p("Fig 5 : UpsetR Ensemblist plot showing the intersection of the different gene-sets found  significantly enriched (p.value < alpha) by each GSEA method. Methods retrieving 0 significantly enriched gene-sets are not included. Only exclusive intersections are taken into account."),
                  plotOutput("snailplot"),
-                 p("Fig 6 : Mset Ensemblist plot showing the intersection of the different gene-sets found  significantly enriched (p.value < alpha) by each GSEA method. Methods retrieving 0 significantly enriched gene-sets are not included"),
+                 p("Fig 6 : Mset Ensemblist plot showing the intersection of the different gene-sets found  significantly enriched (p.value < alpha) by each GSEA method. Methods retrieving 0 significantly enriched gene-sets are not included."),
                  plotOutput("heatmap"),
-                 p("Fig 7 : Binary heatmap showing wether a gene-set is found differentially (red) expressed (p.value < alpha) by a GSEA method or not (blue)"),
+                 p("Fig 7 : Binary heatmap showing whether a gene-set is found differentially (red) expressed (p.value < alpha) by a GSEA method or not (blue). Only the gene-sets belonging the biggest intersections size (n), and the second biggest intersections size (n-1) are included."),
                  plotOutput("resumplot", brush = brushOpts(id = "plot_brush")),
-                 p("Fig 8 : Summary plot combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC"),
+                 p("Fig 8 : Summary plot combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC."),
                  verbatimTextOutput("brush_info"),
-                 p("Table 1 : Gene-sets abbreviation mapping for condition summary plot")
+                 p("Table 1 : Gene-sets abbreviation mapping for condition summary plot.")
                  ),
         tabPanel("Summary Plot",
                  plotOutput("summaryPlot", brush = brushOpts(id = "comparison_brush")),
                  verbatimTextOutput("brush_info2"),
-                 p("Table 2 : Gene-sets abbreviation mapping for comparison summary plot")
+                 p("Table 2 : Gene-sets abbreviation mapping for comparison summary plot.")
                  ),
         tabPanel("Download",
                  # uiOutput("conditionToDisplay"),
                  downloadButton('downloadData', 'Download result table'),
                  p("   \n"),
                  downloadButton("report", "Generate report"),
-                 p("Please wait while the report is generated, this might take a while \n"))
+                 p("Please wait while the report is generated, this might take a while... \n"))
         # tabPanel("resumPlot1")
       )
     )
