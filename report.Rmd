@@ -20,48 +20,48 @@ result = coGSEA(ElistObject = elist, contrastMatrix = contrast, geneSetCollectio
 for (i in colnames(contrast())){
   cat("  \n")
   cat("# Result for condition", i, ":   \n")
-  
+
   plot(resOutput()[["clustering"]][[i]],hang = -0.1)  
     cat("  \n")  
-    cat("Fig 1 : Clustering of the GSEA methods on the genesets ranks (bases on raw p.values)  \n")  
-  
+    cat("Fig 1 : Clustering of the GSEA methods on the gene-sets ranks (bases on raw p.values).\n")  
+
   res.pca = PCA(resOutput()$PCA[[i]], scale.unit = T, axes = c(1,2), graph = FALSE)
   eigen = res.pca$eig$`percentage of variance`
   names(eigen) = rownames(res.pca$eig)
-  
+
   plot(res.pca)  
     cat("  \n")  
-    cat("Fig 2 : PCA of the GSEA methods on the genesets ranks (bases on raw p.values)  \n")  
-  
+    cat("Fig 2 : PCA of the GSEA methods on the gene-sets ranks (bases on raw p.values).\n")  
+
   barplot(eigen, las = 2, ylab = "%")  
     cat("  \n")  
-    cat("Fig 3 : Fall of the eigen values for the PCA above  \n")  
-  
+    cat("Fig 3 : Fall of the eigen values for the PCA above.\n")  
+
   corrplot(resOutput()$correlation[[i]], method = "circle", type = "full", order = "hclust",mar=c(10, 4, 4, 2) + 0.1)  
     cat("  \n")  
-    cat("Fig 4 : Correlation Plot of the GSEA methods on the genesets ranks (bases on raw p.values)  \n")  
-  
+    cat("Fig 4 : Correlation Plot of the GSEA methods on the gene-sets ranks (bases on raw p.values).\n")  
+
   upset(fromList(resOutput()$snailPlot[[i]]),order.by = "freq")   
     cat("  \n")
-    cat("Fig 5 : UpsetR Ensemblist plot showing the intersection of the different gene sets found significantly differentialy expressed (p.value < alpha) by each GSEA method  \n")
-  
+    cat("Fig 5 : UpsetR Ensemblist plot showing the intersection of the different gene-sets found  significantly enriched (p.value < alpha) by each GSEA method. Methods retrieving 0 significantly enriched gene-sets are not included. Only exclusive intersections are taken into account.\n")
+
   snail = supertest(resOutput()$snailPlot[[i]], n = length(levels(resOutput()$snailPlot[[i]][[1]])))  
   plot.msets(snail, sort.by="size", keep.empty.intersections=FALSE, min.intersection.size = input$min.intersection.size)    
     cat("  \n")  
-    cat("Fig 6 : Mset Ensemblist plot showing the intersection of the different gene sets found significantly differentialy expressed (p.value < alpha) by each GSEA method  \n")  
-  
+    cat("Fig 6 : Mset Ensemblist plot showing the intersection of the different gene-sets found  significantly enriched (p.value < alpha) by each GSEA method. Methods retrieving 0 significantly enriched gene-sets are not included.\n")  
+
   pheatmap::pheatmap(resOutput()$heatmap[[i]], fontsize = 8)  
     cat("  \n")  
-    cat("Fig 7 : Binary heatmap showing wether a geneset is found differentially (red) expressed (p.value < alpha) by a GSEA method or not (blue)  \n")  
-  
+    cat("Fig 8 : Summary plot combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC.\n")  
+
   generateSummaryPlots(resOutput()$resumPlot2[[i]], savePlot = FALSE, legend = TRUE, file.name = "tmp", format = "pdf")  
     cat("  \n")  
-    cat("Fig 8 : Summary plot per condition combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC  \n")  
-  
-  
-  
-  
-  
+    cat("Fig 8 : Summary plot per condition combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC.\n")  
+
+
+
+
+
 
 }
 ```
@@ -73,7 +73,7 @@ generateSummaryPlots(resOutput()$comparison, savePlot = FALSE, legend = TRUE, fi
 
 Fig 9 : Comparison Summary plot combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC  
 
-  
+
 # Gene set Abbreviation mapping  
 ```{r kable, echo=FALSE}
 kable(resOutput()$abbreviation)
@@ -81,5 +81,3 @@ kable(resOutput()$abbreviation)
 
 
 ```
-
-

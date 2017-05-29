@@ -89,12 +89,12 @@ shinyUI(fluidPage(
                  plotOutput("resumplot", brush = brushOpts(id = "plot_brush")),
                  p("Fig 8 : Summary plot combining both the logFC on the y-axis and the -log10(p.value) on the x-axis. The size of the bubbles indicates the significance (combination of p.value and logFC) while the color indicates the direction of logFC."),
                  verbatimTextOutput("brush_info"),
-                 p("Table 1 : Gene-sets abbreviation mapping for condition summary plot.")
+                 p("Table 1 : Gene-sets abbreviation mapping for condition summary plot. (Select bubbles in the graph above to visualize the information)")
                  ),
         tabPanel("Summary Plot",
                  plotOutput("summaryPlot", brush = brushOpts(id = "comparison_brush")),
                  verbatimTextOutput("brush_info2"),
-                 p("Table 2 : Gene-sets abbreviation mapping for comparison summary plot.")
+                 p("Table 2 : Gene-sets abbreviation mapping for comparison summary plot. (Select bubbles in the graph above to visualize the information)")
                  ),
         tabPanel("Download",
                  # uiOutput("conditionToDisplay"),
