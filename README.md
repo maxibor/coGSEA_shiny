@@ -24,7 +24,7 @@ Two objects are used as an input to this method :
 - An [elist](http://web.mit.edu/~r/current/arch/i386_linux26/lib/R/library/limma/html/EList.html) object. This object is very similar to a R list. [Example data file](./exampleData/elist.rds)
 - A contrast matrix. [Example data](./exampleData/contrast.rds)
 
-More information about the method can be found in the [method introduction](./intro.md) and on the vignette of `coGSEA`.
+More information about the method can be found in the [method introduction](./intro.md) and in the vignette of `coGSEA`.
 ![](./images/screenshot.png)
 
 #### Disclaimer :
